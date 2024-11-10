@@ -13,7 +13,7 @@
         <a href="table.html">Таблица</a>
     </div>
     <div>
-        <table>
+        <table id="table">
         <caption>Таблица студентов</caption>
         <tr style="background-color: grey;">
             <th>Id</th>
@@ -76,6 +76,72 @@
             <td>ИБАС</td>
         </tr>
     </table>
+    </div>
+    <div>
+        <form id="form">
+            <fieldset>
+                <legend>Добавить нового студента</legend>
+                <label for="fid">Id:</label>
+                <input type="number" id="fid" name="fid" min="0"><br>
+
+                <label for="fname">ФИО:</label>
+                <input type="text" id="fname" name="fname"><br>
+
+                <label for="fstud">Номер зачетной книжки:</label>
+                <input type="text" id="fstud" name="fstud"><br>
+
+                <label for="fgroup">Группа:</label>
+                <input type="text" id="fgroup" name="fgroup"><br>
+
+                <label for="fgen">Пол:</label>
+                <select name="fgen" id="fgen">
+                    <option value="М">Мужской</option>
+                    <option value="Ж">Женский</option>
+                </select><br>
+
+                <label for="fage">Возраст:</label>
+                <input type="number" id="fage" name="fage" min="0"><br>
+
+                <label for="fpost">Форма поступления:</label>
+                <input type="text" id="fpost" name="fpost"><br>
+
+                <label for="fnap">Направление:</label>
+                <input type="text" id="fnap" name="fnap"><br><br>
+
+                <input type="submit" value="Отправить">
+            </fieldset>
+        </form>
+
+        <script>   
+            function addRecord(form) {  
+            const table = document.querySelector("table");  
+            const newRow = table.insertRow(-1);  
+            
+            const id = form.fid.value;  
+            const name = form.fname.value;  
+            const stud = form.fstud.value;  
+            const group = form.fgroup.value;  
+            const gen = form.fgen.value;
+            const age = form.fage.value;
+            const post = form.fpost.value;
+            const nap = form.fnap.value;
+            newRow.insertCell(0).innerText = id;  
+            newRow.insertCell(1).innerText = name;  
+            newRow.insertCell(2).innerText = stud;  
+            newRow.insertCell(3).innerText = group;  
+            newRow.insertCell(4).innerText = gen;  
+            newRow.insertCell(5).innerText = age;  
+            newRow.insertCell(6).innerText = post;  
+            newRow.insertCell(7).innerText = nap;  
+            newRow.style.backgroundColor = `#${Math.floor(Math.random() * 0xFFFFFF).toString(16).padEnd(6, '0')}`;
+            form.reset();  
+        }  
+
+        document.getElementById("form").addEventListener("submit", function (e) {     
+            e.preventDefault();     
+            addRecord(e.target);     
+        });     
+        </script>
     </div>
 </body>
 </html>
